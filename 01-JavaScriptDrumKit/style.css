@@ -8,7 +8,7 @@ html {
 body {
     /*background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;*/
     /*background-size: cover;*/
-    background: url('b9r5sEL.jpg');
+    background: url('public/b9r5sEL.jpg');
     /* 이미지를 가져오지 못한 경우에 grey로 배경 색을 칠한다 */
     background-color: #cccccc;
     background-size: cover;
@@ -41,7 +41,7 @@ body {
     letter-spacing: .1rem;
     color: #ffc600;
 }
-#keys > .box > span.playing {
+#keys > .box.playing {
     transform: scale(1.1);
     border-color: #ffc600;
     box-shadow: 0 0 1rem #ffc600;
