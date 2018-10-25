@@ -23,3 +23,10 @@
 - `data-*` attributes는 페이지 또는 어플리케이션에서 사용자의 데이타를 저장하기 위해서 사용한다.
 [HTML data-* Attributes](https://www.w3schools.com/tags/att_global_data.asp)
 
+###### css의 transition이 완료되면 transitionend 이벤트가 발생한다.
+만약, 특정 엘리먼트에 대해 트랜지션 이벤트가 완료되면 어떠한 작업을 수행하고자 하면, 아래와 같이 이벤트를 등록하여 구현하면 된다.
+```javascript
+const el = document.querySelectorAll('.key');
+el.addEventListener('transitionend', func);
+```
+[transitionend 이벤트](http://www.w3bai.com/ko/jsref/event_transitionend.html)

@@ -12,15 +12,15 @@ function playing(event) {
   elAudio.play();
 }
 
+function removeTransition(event) {
+  if (event.propertyName !== 'transform') return;
+  // 해당 이벤트가 발생한 엘리먼트가 this에 담겨져있다.
+  this.classList.remove(PLAYING);
+}
+
+/**
+ * add event
+ */
+const elKeys = document.querySelectorAll('.key');
+elKeys.forEach(key => key.addEventListener('transitionend', removeTransition));
 document.addEventListener('keydown', playing);
-  // let { key } = ev;
-  // let el = document.getElementById(keySounds[key.toLowerCase()]);
-  // const oldClassName = el.className;
-  //
-  // el.className += ' playing';
-  // setTimeout(function() {
-  //   el.className = oldClassName;
-  // }, 100);
-  //
-  // let audio = el.querySelector('audio');
-  // audio.play();
