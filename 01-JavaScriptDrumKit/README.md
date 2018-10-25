@@ -6,9 +6,20 @@
 ```html
 <audio id="audio" src="public/sounds/boom.wav"></audio>
 <script>
-document.getElementById('audio').play();
+  const audio = document.querySelector('audio');
+  // play 시작 지점을 설정 
+  audio.currentTime = 0; 
+  // 오디오를 재생
+  audio.play();
 </script>
 ```
+[HTML5 Audio 태그 사용 예제보기](https://webisfree.com/2017-09-07/html5-audio-%ED%83%9C%EA%B7%B8-%EC%82%AC%EC%9A%A9-%EC%98%88%EC%A0%9C%EB%B3%B4%EA%B8%B0)
 
-## Question ?
-1. 왜 body가 아닌 html에 backgournd로 선언하였는지?
+###### keycode 확인하기
+키보드의 특정 키를 입력받아서 처리하는 경우에는 문자로 비교하기보다는 keyCode를 이용하여 비교하자.
+[http://keycode.info/](http://keycode.info/)에서 확인하고자 하는 키를 입력하면 해당 키에 대한 키코드 값을 확인할 수 있다.
+
+###### HTML data-* Attributes
+- `data-*` attributes는 페이지 또는 어플리케이션에서 사용자의 데이타를 저장하기 위해서 사용한다.
+[HTML data-* Attributes](https://www.w3schools.com/tags/att_global_data.asp)
+

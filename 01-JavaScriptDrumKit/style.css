@@ -21,7 +21,7 @@ body {
     align-items: center;
     justify-content: center;
 }
-#keys > .box {
+#keys > .key {
     border: .4rem solid black;
     border-radius: .5rem;
     margin: 1rem;
@@ -35,14 +35,14 @@ body {
     text-shadow: 0 0 .5rem black;
 }
 
-#keys > .box > span {
+#keys > .key > span {
     font-size: 1.2rem;
     text-transform: uppercase;
     letter-spacing: .1rem;
     color: #ffc600;
 }
-#keys > .box.playing {
+#keys > .key.playing {
     transform: scale(1.1);
     border-color: #ffc600;
-    box-shadow: 0 0 1rem #ffc600;
+    key-shadow: 0 0 1rem #ffc600;
 }
