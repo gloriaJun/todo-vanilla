@@ -1,35 +1,23 @@
+const clock = document.querySelector('div.clock-face');
+const hourEl = clock.querySelector('div.hour-hand');
+const minEl = clock.querySelector('div.min-hand');
+const secondEl = clock.querySelector('div.second-hand');
 
-const HOUR_DEG = 360/12;
-const MIN_DEG = 360/(10 * 12);
-
-function setHour(el, value) {
-  const deg = (HOUR_DEG * value) + 90;
-  const hour = el.querySelector('div.hour-hand');
-  hour.style.cssText = ` transform: rotate(${deg}deg); transform-origin: 100% 0 0;`;
+function setTransform(el, degrees) {
+  el.style.transform = `rotate(${degrees + 90}deg)`;
 }
 
-function setMin(el, value) {
-  const deg = (MIN_DEG * value) + 90;
-  const min = el.querySelector('div.min-hand');
-  min.style.cssText = ` transform: rotate(${deg}deg); transform-origin: 100% 0 0;`;
-}
+function setDate() {
+  const now = new Date();
+  const hour = now.getHours();
+  const min = now.getMinutes();
+  const seconds = now.getSeconds();
 
-function setSecond(el, value) {
-  const deg = (MIN_DEG * value) + 90;
-  const min = el.querySelector('div.second-hand');
-  min.style.cssText = ` transform: rotate(${deg}deg); transform-origin: 100% 0 0;`;
+  setTransform(hourEl, ((hour/12) * 360));
+  setTransform(minEl, ((min/60) * 360));
+  setTransform(secondEl, ((seconds/60) * 360));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const clock = document.querySelector('div.clock-face');
-
-  setInterval(function() {
-    // get current time
-    const date = new Date();
-    // set hour
-    const hour = date.getHours();
-    setHour(clock, (hour > 12 ? hour - 12 : hour));
-    setMin(clock, date.getMinutes());
-    setSecond(clock, date.getSeconds());
-  }, 1000);
+  setInterval(setDate, 1000);
 });
