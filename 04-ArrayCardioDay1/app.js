@@ -83,7 +83,7 @@ const appView = (function () {
     filter(list) {
       // Array.prototype.filter()
       // 1. Filter the list of inventors for those who were born in the 1500's
-      return list.filter(obj => obj.year > 1500 && obj.year < 1600);
+      return list.filter(obj => obj.year >= 1500 && obj.year < 1600);
     },
     map(list) {
       // Array.prototype.map()
@@ -110,8 +110,13 @@ const appView = (function () {
     sortPeople(list) {
       // 7. sort Exercise
       // Sort the people alphabetically by last name
-      return list.sort((v1, v2) =>
-          v1.split(',')[1] - v2.split(',')[1]);
+      // return list.sort((v1, v2) =>
+      //     v1.split(',')[1] - v2.split(',')[1]);
+      return list.sort((v1, v2) => {
+        const [aLast, aFirst] = v1.split(', ');
+        const [bLast, bFirst] = v2.split(', ');
+        return aLast > bLast ? 1 : -1;
+      });
     },
     reduceCar(list) {
       // 8. Reduce Exercise
@@ -133,11 +138,11 @@ const appController = (function () {
         data,
       } = appModel;
 
-      console.log(appView.filter(inventors));
+      console.table(appView.filter(inventors));
       console.log(appView.map(inventors));
-      console.log(appView.sortByYear(inventors));
-      console.log(appView.reduce(inventors));
-      console.log(appView.sortByLived(inventors));
+      console.table(appView.sortByYear(inventors));
+      console.table(appView.reduce(inventors));
+      console.table(appView.sortByLived(inventors));
 
       console.log(appView.sortPeople(people));
 
