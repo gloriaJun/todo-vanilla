@@ -30,23 +30,29 @@ const appController = (function () {
         comments,
       } = appModel;
 
-      const date = new Date();
-      const year = date.getFullYear();
+      const currentYear = (new Date()).getFullYear();
       // Some and Every Checks
       // Array.prototype.some() // is at least one person 19 or older?
-      console.log(people.some(obj => year - obj.year >= 19));
+      const isAdult = people.some(obj => currentYear - obj.year >= 19);
+      console.log({ isAdult });
       // Array.prototype.every() // is everyone 19 or older?
-      console.log(people.every(obj => year - obj.year >= 19));
+      const allAdult = people.every(obj => currentYear - obj.year >= 19);
+      console.log({ allAdult });
 
       // Array.prototype.find()
       // Find is like filter, but instead returns just the one you are looking for
       // find the comment with the ID of 823423
-      console.log(comments.find(obj => obj.id === 823423));
+      const comment = comments.find(obj => obj.id === 823423);
+      console.log(comment);
 
       // Array.prototype.findIndex()
       // Find the comment with this ID
+      const commentIdx = comments.findIndex(obj => obj.id === 823423);
+      console.log(commentIdx);
+
       // delete the comment with the ID of 823423
-      console.log(comments.findIndex(obj => obj.id === 823423));
+      comments.splice(commentIdx, 1);
+      console.table(comments);
     },
   }
 })();
