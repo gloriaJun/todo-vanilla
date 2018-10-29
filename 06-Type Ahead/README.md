@@ -1,5 +1,5 @@
 ## Exercise 6: Ajax Type Ahead
--
+- api로부터 데이터를 받아서 사용자가 입력한 문자에 일치하는 결과를 필터링하여 출력한다.
 
 ## Today I Learn
 #### Fetch API
