@@ -1,55 +1,59 @@
-const appModel = (function () {
-  return {
-    dogs: [
-      {name: 'Snickers', age: 2},
-      {name: 'hugo', age: 8}
-    ],
-  }
-})();
+const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
 
-const appView = (function () {
-  return {
-    makeGreen() {
-      const p = document.querySelector('p');
-      p.style.color = '#BADA55';
-      p.style.fontSize = '50px';
-    }
-  }
-})();
+function makeGreen() {
+  const p = document.querySelector('p');
+  p.style.color = '#BADA55';
+  p.style.fontSize = '50px';
+}
 
-const appController = (function () {
-  return {
-    init() {
-      document.getElementById('keyword').addEventListener('click', appView.makeGreen);
+// clearing
+console.clear();
 
-      // Regular
+// Regular
+console.log('hello');
 
-      // Interpolated
+// Interpolated
+console.log('hello I am %s string!!', 'aaa');
 
-      // Styled
+// Styled
+console.log('%c I am some great ext', 'color: white;font-size: 20px; background:blue;');
 
-      // warning!
+// warning!
+console.warn('It\'s warning');
 
-      // Error :|
+// Error :|
+console.error('It\'s error');
 
-      // Info
+// Info
+console.info('It\'s info');
 
-      // Testing
+// Testing
+console.assert(1 !== 1, 'It\' wrong from test');
 
-      // clearing
+// Viewing DOM Elements
+const p = document.querySelector('p');
+console.dir(p);
 
-      // Viewing DOM Elements
+// Grouping together
+dogs.forEach(dog => {
+  console.group(`${dog.name}`);
+  console.log(`This is ${dog.name}`);
+  console.log(`${dog.name} is ${dog.age} years old`);
+  console.groupEnd(`${dog.name}`);
+})
 
-      // Grouping together
+// counting
+console.count('Wes');
+console.count('Wes');
+console.count('Steve');
+console.count('Wes');
+console.count('Wes');
+console.count('Steve');
 
-      // counting
 
-      // timing
+// timing
+console.time('fetching data');
+// doing something
+console.timeEnd('fetching data');
 
-    },
-  }
-})();
-
-document.addEventListener('DOMContentLoaded', () => {
-  appController.init();
-});
+console.table(dogs);
