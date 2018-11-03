@@ -4,11 +4,28 @@ const appModel = (function () {
 })();
 
 const appView = (function () {
-  const checkboxs = document.querySelectorAll('.item > input[type=checkbox]');
+  const checkboxes = document.querySelectorAll('.item > input[type=checkbox]');
+  let lastChecked;
 
   return {
     checked(event) {
-      console.log(event.shiftKey, this);
+      let inBetween = false;
+      // check if they had the shift key
+      const { checked } = this;
+      if (!!lastChecked && event.shiftKey && checked) {
+        // loop
+        checkboxes.forEach(checkbox => {
+          if (checkbox === this || lastChecked === checkbox) {
+            inBetween = !inBetween;
+          }
+
+          if (inBetween) {
+            checkbox.checked = checked;
+          }
+        })
+      }
+
+      lastChecked = this;
     },
   }
 })();
@@ -16,8 +33,8 @@ const appView = (function () {
 const appController = (function () {
   return {
     init() {
-      const checkboxs = document.querySelectorAll('.item > input[type=checkbox]');
-      checkboxs.forEach(check => check.addEventListener('click', appView.checked))
+      const checkboxes = document.querySelectorAll('.inbox > .item > input[type=checkbox]');
+      checkboxes.forEach(check => check.addEventListener('click', appView.checked))
     },
   }
 })();
