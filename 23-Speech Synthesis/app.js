@@ -4,18 +4,16 @@ const appModel = (function () {
 })();
 
 const appView = (function () {
-  const msg = new SpeechSynthesisUtterance();
-  const pitch = document.querySelector('input[name="pitch"]');
-  const rate = document.querySelector('input[name="rate"]');
   const textarea = document.querySelector('textarea[name="text"]');
+  const msg = new SpeechSynthesisUtterance(textarea.value);
   const synth = speechSynthesis;
   let voices = [];
 
   return {
     drawVoiceListComboBox() {
       voices = synth.getVoices().filter(voice => voice.lang.includes('en-'));
-      const voicesDropdown = document.querySelector('[name="voice"]');
 
+      const voicesDropdown = document.querySelector('[name="voice"]');
       let fragment = document.createDocumentFragment();
       voices.forEach(voice => {
         let option = document.createElement('option');
@@ -33,14 +31,15 @@ const appView = (function () {
       msg.voice = voices.find(voice => voice.name === selected);
       appView.speakVoice();
     },
+    setOptions() {
+      msg[this.name] = this.value;
+      appView.speakVoice();
+    },
     speakVoice() {
-      msg.pitch = pitch.value;
-      msg.rate = rate.value;
-      msg.text = textarea.value;
       synth.speak(msg);
     },
     stopVoice() {
-      // synth
+      synth.cancel();
     },
   }
 })();
@@ -55,6 +54,7 @@ const appController = (function () {
     init() {
       speechSynthesis.addEventListener('voiceschanged', appView.drawVoiceListComboBox);
       voicesDropdown.addEventListener('change', appView.selectVoice);
+      options.forEach(option => option.addEventListener('change', appView.setOptions));
       speakButton.addEventListener('click', appView.speakVoice);
       stopButton.addEventListener('click', appView.stopVoice);
     },
